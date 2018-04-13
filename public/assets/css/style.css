@@ -32,3 +32,20 @@ textarea {
 	height: 200px;
 	font-size: 18px;
 }
+/* customize bootstrap */
+summary {
+    display: block;
+    cursor: pointer;
+}a {
+    color: #fff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+.card {
+	margin: 0 0 20px 0;
+}

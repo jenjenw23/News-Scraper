@@ -17,6 +17,14 @@ var PORT = 3000;
 // Initialize Express
 var app = express();
 
+
+
+// Set Handlebars.
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 // Configure middleware
 
 // Use morgan logger for logging requests
@@ -25,13 +33,29 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+// parse application/json
+app.use(bodyParser.json());
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
+
+
 
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/newsdbscraper");
 
 // Routes
+// landing page
+app.get("/", function(req, res) {
+	db.Article.find({}, null, {sort: {_id: -1}}, function(err, data) {
+		if(data.length === 0) {
+			res.render("placeholder", {message: "There's nothing scraped yet. Please click \"Scrape For Newest Articles\" for fresh and delicious news."});
+		}
+		else{
+			res.render("index", {articles: data});
+		}
+	});
+});
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function (req, res) {
