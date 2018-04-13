@@ -45,20 +45,12 @@ app.get("/scrape", function (req, res) {
       // Save an empty result object
       var result = {};
 
-      var link = $(element).find("a").attr("href");
+      var link = 'https://www.theatlantic.com' + $(element).find("a").attr("href");
       var title = $(element).find("h2.hed").text().trim();
       var summary = $(element).find("p.dek.has-dek").text().trim();
       result.link = link;
       result.title = title;
       result.summary = summary;
-
-      // Add the text and href of every link, and save them as properties of the result object
-      // result.title = $(this)
-      //   .children("a")
-      //   .text();
-      // result.link = $(this)
-      //   .children("a")
-      //   .attr("href");
 
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
