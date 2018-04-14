@@ -1,6 +1,6 @@
 # News-Scraper
 
-Mongo Scraper a web app that lets users view the latest new articles from The Atlantic, save articles, delete articles and create notes for saved articles. 
+Mongo Scraper ia a web app that lets users view the latest news articles from The Atlantic, save articles and add notes, as well as delete articles.
 
 Built with Mongo, Mongoose, Node, Express and Handlebars. 
 
