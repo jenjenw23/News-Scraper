@@ -17,12 +17,12 @@ var PORT = 3000;
 // Initialize Express
 var app = express();
 
-
-
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", exphbs({
+  defaultLayout: "main"
+}));
 app.set("view engine", "handlebars");
 
 // Configure middleware
@@ -39,22 +39,27 @@ app.use(bodyParser.json());
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
-
-
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/newsdbscraper");
 
 // Routes
 // landing page
-app.get("/", function(req, res) {
-	db.Article.find({}, null, {sort: {_id: -1}}, function(err, data) {
-		if(data.length === 0) {
-			res.render("starter", {message: "There's nothing scraped yet. Click the Scrape News Article link for new articles"});
-		}
-		else{
-			res.render("index", {articles: data});
-		}
-	});
+app.get("/", function (req, res) {
+  db.Article.find({}, null, {
+    sort: {
+      _id: -1
+    }
+  }, function (err, data) {
+    if (data.length === 0) {
+      res.render("starter", {
+        message: "There's nothing scraped yet. Click the Scrape News Article link for new articles"
+      });
+    } else {
+      res.render("index", {
+        articles: data
+      });
+    }
+  });
 });
 
 // A GET route for scraping the echoJS website
@@ -152,23 +157,48 @@ app.post("/articles/:id", function (req, res) {
 });
 
 
-app.get("/saved", function(req, res) {
-	db.Article.find({savedstatus: true}, null, {sort: {_id: -1}}, function(err, data) {
-		if(data.length === 0) {
-			res.render("starter", {message: "You have not saved any articles yet. Go back to home and click the Save Article button"});
-		}
-		else {
-			res.render("saved", {articles: data});
-		}
-	});
+app.get("/saved", function (req, res) {
+  db.Article.find({
+    savedstatus: true
+  }, null, {
+    sort: {
+      _id: -1
+    }
+  }, function (err, data) {
+    if (data.length === 0) {
+      res.render("starter", {
+        message: "You have not saved any articles yet. Go back to home and click the Save Article button"
+      });
+    } else {
+      res.render("saved", {
+        articles: data
+      });
+    }
+  });
 });
 
-app.post("/save/:id", function(req, res) {
-	db.Article.findById(req.params.id, function(err, data) {
-			db.Article.findByIdAndUpdate(req.params.id, {$set: {savedstatus: true}}, {new: true}, function(err, data) {
-				res.redirect("/");
-      });
-	});
+app.post("/save/:id", function (req, res) {
+  db.Article.findById(req.params.id, function (err, data) {
+    db.Article.findByIdAndUpdate(req.params.id, {
+      $set: {
+        savedstatus: true
+      }
+    }, {
+      new: true
+    }, function (err, data) {
+      res.redirect("/");
+    });
+  });
+});
+
+app.post("/delete/:id", function (req, res) {
+  db.Article.findById(req.params.id, function (err, data) {
+    db.Article.findByIdAndRemove({
+      _id: req.params.id
+    }, function (err, data) {
+      res.redirect("/saved");
+    });
+  });
 });
 
 
