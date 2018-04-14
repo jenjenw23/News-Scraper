@@ -49,7 +49,7 @@ mongoose.connect("mongodb://localhost/newsdbscraper");
 app.get("/", function(req, res) {
 	db.Article.find({}, null, {sort: {_id: -1}}, function(err, data) {
 		if(data.length === 0) {
-			res.render("placeholder", {message: "There's nothing scraped yet. Please click \"Scrape For Newest Articles\" for fresh and delicious news."});
+			res.render("starter", {message: "There's nothing scraped yet. Click the Scrape News Article link for new articles"});
 		}
 		else{
 			res.render("index", {articles: data});
@@ -150,6 +150,27 @@ app.post("/articles/:id", function (req, res) {
       res.json(err);
     });
 });
+
+
+app.get("/saved", function(req, res) {
+	db.Article.find({savedstatus: true}, null, {sort: {_id: -1}}, function(err, data) {
+		if(data.length === 0) {
+			res.render("starter", {message: "You have not saved any articles yet. Go back to home and click the Save Article button"});
+		}
+		else {
+			res.render("saved", {articles: data});
+		}
+	});
+});
+
+app.post("/save/:id", function(req, res) {
+	db.Article.findById(req.params.id, function(err, data) {
+			db.Article.findByIdAndUpdate(req.params.id, {$set: {savedstatus: true}}, {new: true}, function(err, data) {
+				res.redirect("/");
+      });
+	});
+});
+
 
 // Start the server
 app.listen(PORT, function () {

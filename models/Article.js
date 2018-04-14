@@ -11,7 +11,7 @@ var ArticleSchema = new Schema({
     type: String,
     required: true,
     //to make sure duplicate articles aren't stored to the db
-    unique : true
+    unique: true
   },
   // `link` is required and of type String
   link: {
@@ -21,6 +21,10 @@ var ArticleSchema = new Schema({
   summary: {
     type: String,
     default: "Summary unavailable."
+  },
+  savedstatus: {
+    type: Boolean,
+    default: false
   },
   // `note` is an object that stores a Note id
   // The ref property links the ObjectId to the Note model

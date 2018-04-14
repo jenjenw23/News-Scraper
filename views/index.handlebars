@@ -1,42 +1,12 @@
-<nav class="navbar navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="/">
-    <span class="headName">Mongo Scraper</span>
-  </a>
-  <div class="fixed-top">
-    <ul class="nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link" href="/">
-          <i class="fa fa-home fa-sm"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/saved">Saved Articles</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/scrape">Scrape New Articles</a>
-      </li>
-      <!--      <li class="nav-item"> <a class="nav-link" href="#">Link</a> </li>
-      <li class="nav-item"> <a class="nav-link disabled" href="#">Disabled</a> </li>-->
-    </ul>
-  </div>
-</nav>
+{{> header}}
 <div class="container">
-  <div class="jumbotron" style="background-color: black; color: white">
-    <h1 class="text-center">Mongo Scraper</h1>
-    <h3 class="text-center">The Atlantic Edition</h3>
-  </div>
-  <h2>
-    <i></i>
-  </h2>
-  {{!--
-  <div id="articles"></div>
-  <div id="notes"></div> --}} {{#each articles}}
+  {{#each articles}}
   <div class="card" id={{this._id}}>
     <div class="card-header bg-primary text-white">
       <a href="{{this.link}}" target="_blank">{{this.title}}</a>
+      <form action="/save/{{this._id}}" method="POST">
+        <button type="submit" class="save btn btn-success save-article" data-id="{{id}}">Save Article</button>
+      </form>
     </div>
 
     <div class="card-body">
@@ -44,8 +14,6 @@
     </div>
   </div>
   {{/each}}
-</div>
-
 </div>
 
 <!-- JS links -->

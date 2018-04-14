@@ -35,8 +35,9 @@ textarea {
 /* customize bootstrap */
 summary {
     display: block;
-    cursor: pointer;
-}a {
+    cursor: default;  
+}
+a {
     color: #fff;
     text-decoration: none;
     background-color: transparent;
@@ -48,4 +49,22 @@ a:hover {
 }
 .card {
 	margin: 0 0 20px 0;
+}
+a.nav-link {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+a.nav-link:hover {
+    color: #007bff;
+    /* text-decoration: underline; */
+}
+.save.btn.btn-success {
+    /* float: right; */
+    margin: 5px;
+}
+.card-header {
+	font-size: 24px;
+	font-weight: bold;
 }

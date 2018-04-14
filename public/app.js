@@ -1,11 +1,11 @@
 // Grab the articles as a json
-$.getJSON("/articles", function(data) {
-  // For each one
-  for (var i = 0; i < data.length; i++) {
-    // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].summary + "</p>");
-  }
-});
+// $.getJSON("/articles", function(data) {
+//   // For each one
+//   for (var i = 0; i < data.length; i++) {
+//     // Display the apropos information on the page
+//     $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].summary + "</p>");
+//   }
+// });
 
 
 // Whenever someone clicks a p tag
@@ -69,4 +69,52 @@ $(document).on("click", "#savenote", function() {
   // Also, remove the values entered in the input and textarea for note entry
   $("#titleinput").val("");
   $("#bodyinput").val("");
+});
+
+// When you click the save article
+$(document).on("click", ".save-article", function() {
+
+  console.log("save button clicked");
+  // Grab the id associated with the article from the submit button
+  var thisId = $(this).attr("data-id");
+  console.log(thisId);
+
+ // dbArticle.update({ _id: thisId }, { $set: { savedstatus: 'true' }}, callback);
+
+  // $.ajax({
+  //   method: "POST",
+  //   url: "/articles",
+  //   data: {
+  //     // Value taken from title input
+  //     _id: thisId,
+  //     savedstatus: true,
+  //     // Value taken from note textarea
+  //   }
+  // })
+  //   // With that done
+  //   .then(function(data) {
+  //     // Log the response
+  //     console.log(data);
+  //     console.log("article saved");
+  //   });
+
+
+  // Run a POST request to change the note, using what's entered in the inputs
+  $.ajax({
+    method: "POST",
+    url: "/save/" + thisId,
+    data: {
+      _id: thisId,
+      savedstatus: true,
+    }
+  })
+    // With that done
+    .then(function(data) {
+      // Log the response
+      console.log(data);
+      console.log("article saved");
+      // Empty the notes section
+
+    });
+
 });
