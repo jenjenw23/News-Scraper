@@ -39,8 +39,13 @@ app.use(bodyParser.json());
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsdbscraper";
+
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
+
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/newsdbscraper");
+//mongoose.connect("mongodb://localhost/newsdbscraper");
 
 // Routes
 // landing page
