@@ -1,8 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
 body {
-	background-color: #FFF
-}
+	background-color: #FFF;
+	font-size: 1.25rem;}
 #wrapper {
 	width: 960px;
 	margin-left: auto;

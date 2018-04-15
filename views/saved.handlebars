@@ -8,12 +8,44 @@
             <form action="/delete/{{this._id}}" method="POST">
                 <button type="submit" class="delete btn btn-danger delete-article" data-id="{{id}}">Delete Article</button>
             </form>
-             <form action="/delete/{{this._id}}" method="POST">
+            {{!--
+            <form action="/delete/{{this._id}}" method="POST">
                 <button type="submit" class="note btn btn-warning add-note" data-id="{{id}}">Add Note</button>
-            </form>
+            </form> --}}
+            <button type="button" id="addnote" class="note btn btn-warning add-note" data-id="{{id}}" data-toggle="modal" data-target="#modal{{this._id}}">
+                Article Notes
+            </button>
         </div>
         <div class="card-body">
             <summary>{{this.summary}}</summary>
+        </div>
+    </div>
+    {{/each}} {{#each articles}}
+    <!-- The Modal -->
+    {{!-- id set with add note button matches id here --}}
+    <div class="modal fade" id="modal{{this._id}}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <strong>Notes for article: </strong>{{this.title}}</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <textarea type="textarea" class="form-control" id="bodyinput" rows="3"></textarea>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" data-id="{{id}}" id="savenote">Save</button>
+                </div>
+
+            </div>
         </div>
     </div>
     {{/each}}
