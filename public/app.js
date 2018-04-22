@@ -10,7 +10,7 @@ $(document).on("click", "#addnote", function () {
     })
     // With that done, add the note information to the page
     .then(function (data) {
-      console.log(data);
+     // console.log(data);
 
       // If there's a note in the article
       if (data.note) {
@@ -26,7 +26,7 @@ $(document).on("click", "#savenote", function () {
   var thisId = $(this).attr("data-id");
   var notebody = $("#bodyinput" + thisId).val();
 
-  console.log("this is notebody: " + notebody);
+  //console.log("this is notebody: " + notebody);
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
       method: "POST",
@@ -39,7 +39,7 @@ $(document).on("click", "#savenote", function () {
     // With that done
     .then(function (data) {
       // Log the response
-      console.log(data);
+      //console.log(data);
       // Empty the notes section
       $("#bodyinput").empty();
     });
