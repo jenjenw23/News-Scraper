@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="UTF-8">
+<title>Mongo Scraper | The Atlantic Edition</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+
+</head>
+
+<body>
+<nav class="navbar navbar-light bg-light fixed-top"> <a class="navbar-brand" href="/"><span class="headName">Mongo Scraper</span> </a>
+  <div class="fixed-top">
+    <ul class="nav justify-content-end">
+      <li class="nav-item"> <a class="nav-link" href="/"><i class="fa fa-home fa-sm"></i></a> </li>
+      <li class="nav-item"> <a class="nav-link" href="/">Home</a> </li>
+      <li class="nav-item"> <a class="nav-link" href="/saved">Saved Articles</a> </li>
+       <li class="nav-item"> <a class="nav-link" href="/scrape">Scrape New Articles</a> </li>
+      <!--      <li class="nav-item"> <a class="nav-link" href="#">Link</a> </li>
+      <li class="nav-item"> <a class="nav-link disabled" href="#">Disabled</a> </li>-->
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div class="jumbotron" style=" background-image:url(assets/images/header.jpg);background-color: black; color: white">
+    <h1 class="text-center">Mongo Scraper</h1>
+    <h3 class="text-center">The Atlantic Edition</h3>
+  </div>
+  <h2><i></i></h2>
+  <div id="articles"></div>
+  <div id="notes"></div>
+</div>
+<!-- JS links --> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<script src="app.js"></script>
+</body>
+
+</html>

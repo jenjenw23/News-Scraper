@@ -50,7 +50,10 @@ mongoose.connect(MONGODB_URI);
 // Routes
 // landing page
 app.get("/", function (req, res) {
-  db.Article.find({}, null, {
+  db.Article.find({
+    //pulls only not saved articles, once artile is save it's removed from the main list
+    savedstatus: false
+  }, null, {
     sort: {
       _id: -1
     }
@@ -148,7 +151,8 @@ app.post("/articles/:id", function (req, res) {
         _id: req.params.id
       }, {
         note: dbNote._id
-      }, {
+      }, 
+      {
         new: true
       });
     })
