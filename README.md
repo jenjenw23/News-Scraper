@@ -8,3 +8,5 @@ Built with Mongo, Mongoose, Node, Express and Handlebars.
 
 ## App Screenshot
 ![App Screenshot](https://github.com/jenjenw23/jenjenw23.github.io/blob/master/assets/images/news-scraper.jpg)
+
+
